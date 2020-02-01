@@ -10,23 +10,27 @@
     </ul>
     <button v-on:click="loadUsers()">Get Users</button>
     <ul>
-      <li v-for="u in users" v-bind:key="u.id">{{u.first_name}}</li>
+      <li v-for="u in getUsers" v-bind:key="u.id">{{u.first_name}}</li>
     </ul>
+    <hr />
+    <div>
+      <h2>Animals</h2>
+      {{getAnimals}}
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
 
 export default {
   computed: {
-    ...mapState[("getProducts", "users")],
-    ...mapGetters(["getProducts"]),
-    users() {
-      return this.$store.state.users;
-    }
+    ...mapGetters(["getProducts", "getAnimals", "getUsers"])
+    // users() {
+    //   return this.$store.state.users;
+    // }
   },
   methods: {
     ...mapActions(["getClients", "loadUsers"])
